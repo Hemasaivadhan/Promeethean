@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Promethean</title>
+  <title>Hem | Promethean</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
@@ -26,7 +26,23 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+emailjs.init({
+  publicKey: "rBrEeie8x9If_Rlby",
+});
+})();
+</script>
+<style>
+  .loading,
+  .error-message,
+  .sent-message {
+      display: none;
+  }
+</style>
   <!-- =======================================================
   * Template Name: Promethean - v1.0.0  
   * Author: Hema Sai
@@ -49,13 +65,13 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="#header">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#about">Process</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Works</a></li>
-          <li><a href="#team">Blog</a></li>         
+          <li><a href="#team">About</a></li>         
           <li><a href="#contact">Contact Us</a></li>
 
-          <li class="get-started"><a href="#about">Get Started</a></li>
+          <li class="get-started"><a href="#contact">Get Started</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -517,8 +533,9 @@
                 </div>
               </div>
             </div>
-          </div>
-
+           </div>
+           <p><b>HEM</b> is a dedicated full-stack developer based in India, known for their exceptional creative skills and innovative solutions that drive business growth. With a calm and composed demeanor, HEM excels in both frontend and backend development, seamlessly integrating technology to meet client needs. Their passion for taking calculated risks has been instrumental in delivering cutting-edge solutions that propel businesses forward. HEM's unique blend of technical expertise and creativity makes them a valuable asset in the tech industry.</p>
+           
           <!-- <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="member">
               <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
@@ -625,7 +642,7 @@
               <div class="email">
                 <i class="icofont-envelope"></i>
                 <h4>Email:</h4>
-                <p>hemasaivadhan896@outlook.com</p>
+                <p>hem.devwizard@Promethean.live</p>
               </div>
 
               <!-- <div class="phone">
@@ -640,7 +657,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form  id ="contactForm"   class="php-email-form">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -664,17 +681,17 @@
                 <div class="validate"></div>
               </div>
               <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="loading" style="display:none;">Loading</div>
+                <!-- <div class="error-message" style="display:none;"></div> -->
+                <div class="sent-message" style="display:none;">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
         </div>
-        <marquee style="background-color: #eb5d1e;color: white;padding: 10px"><h5>
-          For now, please contact us via email at hemasaivadhan896@outlook.com. We will be in touch with you soon.</h5> </marquee>
+        <!-- <marquee style="background-color: #eb5d1e;color: white;padding: 10px"><h5>
+          For now, please contact us via email at hemasaivadhan896@outlook.com. We will be in touch with you soon.</h5> </marquee> -->
       </div>
     </section><!-- End Contact Us Section -->
 
@@ -708,7 +725,7 @@
               <!-- New York, NY 535022<br> -->
               India <br><br>
               <!-- <strong>Phone:</strong> +1 5589 55488 55<br> -->
-              <strong>Email:</strong> hemasaivadhan896@outlook.com<br>
+              <strong>Email:</strong> hem.devwizard@Promethean.live<br>
             </p>
           </div>
 
@@ -771,10 +788,50 @@
   <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script type="text/javascript">
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const form = this;
+
+        // Show the loading message
+        form.querySelector('.loading').style.display = 'block';
+
+        // Get the form data
+        const formData = {
+            name: form.name.value,
+            email: form.email.value,
+            subject: form.subject.value,
+            message: form.message.value
+        };
+
+        // Send the form data via EmailJS
+        emailjs.send('service_5yog1wm', 'template_xenxqjf', formData)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                // Hide the loading message
+                form.querySelector('.loading').style.display = 'none';
+                // Show the success message
+                form.querySelector('.sent-message').style.display = 'block';
+                // Clear the form
+                form.reset();
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }, function(error) {
+                console.log('FAILED...', error);
+                // Hide the loading message
+                form.querySelector('.loading').style.display = 'none';
+                // Show the error message
+                form.querySelector('.error-message').style.display = 'block';
+            });
+    });
+    </script>
 </body>
 
 </html>
